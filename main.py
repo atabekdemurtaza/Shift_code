@@ -10,11 +10,29 @@ def get_data():
     data = (word, num)
     return data
 
-def make_code():
-    pass
+def make_code(word, num):
+    new_word = ""
+    for i in word:
+        j = alphabet.index(i)
+        j += num
+        if j > 26:
+            j = j - 27
+        char = alphabet[j]
+        new_word = new_word + char
+    print(f'Шифр текста {word} -> {new_word}')
+    print()
 
-def decode():
-    pass
+def decode(word, num):
+    new_word = ""
+    for i in word:
+        j = alphabet.index(i)
+        j -= num
+        if j < 0:
+            j = j + 27
+        char = alphabet[j]
+        new_word = new_word + char
+    print(f'{word} -> {new_word}')
+    print()
 
 def main():
     isAgain = True
@@ -24,10 +42,11 @@ def main():
         print('Выйти из программы - 3')
         selection = input('Выберите опцию: ')
         if selection == '1':
-            word, num = get_data()
-            #make_code()
+            (word, num) = get_data()
+            make_code(word, num)
         elif selection == '2':
-            decode()
+            (word, num) = get_data()
+            decode(word, num)
         elif selection == '3':
             print('Вы вышли из программы, Спасибо!')
             isAgain = False
@@ -35,8 +54,7 @@ def main():
             raise TypeError('Вы выбрали не тот вариант. Пожалуйста попробуйте еще раз!')
 
 if __name__ == '__main__':
-    pass
-    #main()
+    main()
 
 
 """def hiText():
